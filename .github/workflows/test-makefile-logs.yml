@@ -1,0 +1,25 @@
+name: test-makefile-logs
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-makefile-logs:
+    runs-on: ubuntu-latest
+    env:
+      CLICOLOR_FORCE: "1"
+      CMAKE_COLOR_DIAGNOSTICS: "ON"
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # v5.0.0
+
+    - uses: astral-sh/setup-uv@v7
+
+    - name: Run cmake
+      run: |
+        env
+        uv tool install cmake
+        cmake --version
+        cmake .
+        make -j VERBOSE=1
