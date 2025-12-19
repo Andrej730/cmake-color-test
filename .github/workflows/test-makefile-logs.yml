@@ -21,5 +21,6 @@ jobs:
         env
         uv tool install cmake
         cmake --version
+        python -c "print('\033[33mHello, \nworld!\033[0m')"
         cmake .
         make -j VERBOSE=1
